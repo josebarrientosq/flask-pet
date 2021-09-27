@@ -37,3 +37,7 @@ make test
 make behave
 make run
 ``` 
+## Documentacion de la API 
+```
+localhost:5000/apidocs
+```
