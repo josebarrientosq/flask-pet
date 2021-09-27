@@ -179,13 +179,8 @@ class ComidaTests(unittest.TestCase):
 
 class apiTests(unittest.TestCase):
     def test_nombrar_mascotas_api(self):
-        nombre="jose"
+        nombre="pepe"
 
         url = f"http://127.0.0.1:5000/v1/personas/<{nombre}>/mascotas"
-        response = requests.get(url)
-        self.assertEqual(response.status_code , 200)
-
-    def test_hola_api(self):
-        url = "http://127.0.0.1:5000/"
         response = requests.get(url)
         self.assertEqual(response.status_code , 200)

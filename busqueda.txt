@@ -1,7 +1,8 @@
-
+olores de codigo
+http://tratandodeentenderlo.blogspot.com/2012/03/los-malos-olores-del-codigo.html
 
 TDD example rik morty
-
+https://rubikscode.net/2021/05/24/test-driven-development-tdd-with-python/
 
 TDD example
 https://scotch.io/tutorials/build-a-restful-api-with-flask-the-tdd-way
@@ -25,3 +26,10 @@ https://elbauldelprogramador.com/buenas-practicas-para-el-diseno-de-una-api-rest
 
 cerberus
 https://codingnetworker.com/2016/03/validate-json-data-using-cerberus/
+https://zetcode.com/python/cerberus/
+
+pylint
+delete space in vscode
+https://programmerclick.com/article/76941632394/
+ignore clases sqlalchemy
+https://github.com/PyCQA/pylint/issues/1973

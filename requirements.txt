@@ -1,5 +1,6 @@
 Flask
-Flask-SQLAlchemy
+flask-sqlalchemy
+psycopg2
 unittest
 behave
 flasgger

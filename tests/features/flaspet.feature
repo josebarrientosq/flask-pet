@@ -7,5 +7,5 @@ Feature: flaspet
 
   Scenario: Obtener las mascotas de la persona
      Given Dado el nombre de la persona
-     When Cuando envio los datos al api /personas/{nombre}/mascotas
+     When Cuando envio los datos al api
      Then obtengo las mascotas de la persona

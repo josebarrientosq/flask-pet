@@ -4,7 +4,7 @@ Es una microservicio para la gestion de mascotas, las personas y la comida
 1. Nombrar los nombre de todas sus mascotas 
 2. Dar comida a una mascota (La mascota solo aceptará la comida que le gusta, no se acepta comida) 
 3. Preparar comida 
-4, Obtener una nueva mascota 
+4. Obtener una nueva mascota 
 5. Revisar si la comida se ha podrido (verificar fecha de caducidad y podrir la comida si se paso)
 6. Comer (Aumenta su salud) 
 7. Dormir (Aumenta su estado de sueño) 

@@ -38,8 +38,7 @@ def nombrar_mascotas(nombre):
     if persona:
         print(persona.nombre)
         lista = [{"nombre" : nombre} for nombre in persona.nombrar_mascotas()]
-        resp ={"mascota" :lista}
-        return resp,200
+        return jsonify(lista),200
     return {"mensaje" : "No existe la persona"},404
 
 @app.route('/v1/personas', methods=['POST'])
@@ -68,7 +67,7 @@ def crear_persona():
         404:
             description: datos invalidos
     """
-    schema = {'name': {'type': 'string'}}
+    schema = {'nombre': {'type': 'string'}}
     validador = Validator(schema)
     params = request.get_json()
     if validador.validate(params):
@@ -119,6 +118,33 @@ def obtener_mascota():
         return {"mensaje" : "agrego mascota"},200
     else:
         return {"mensaje" : "no se encontro la persona o mascota"}, 404
+
+@app.route('/v1/personas/<nombre>', methods=['DELETE'])
+def borrar_persona(nombre):
+    """Borrar persona
+    Borrar persona dado su nombre
+    ---
+    tags:
+        -   Persona
+    parameters:
+      - name: nombre
+        in: path
+        type: string
+        required: true
+        description: Nombre de la persona
+    responses:
+        200:
+            description: se elimino la persona
+        404:
+            description: no se encontro la persona
+    """
+
+    persona = Persona.query.filter_by(nombre=nombre).first()
+    if persona:
+        db.session.delete(persona)
+        db.session.commit()
+        return {"mensaje" : "se elimino la persona"},200
+    return {"mensaje" : "no se encontro la persona"}, 404
 
 
 @app.route('/v1/mascotas', methods=['POST'])
