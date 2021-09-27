@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+unittest
+behave
+flasgger
+cerberus
+pylint

@@ -1,0 +1,27 @@
+
+
+TDD example rik morty
+
+
+TDD example
+https://scotch.io/tutorials/build-a-restful-api-with-flask-the-tdd-way
+
+behave example
+https://www.guru99.com/bdd-testing-rest-api-behave.html
+
+flasgger github
+https://github.com/flasgger/flasgger
+
+flasgger demo
+http://brunorocha.org/python/flask/flasgger-api-playground-with-flask-and-swagger-ui.html
+
+
+swagger media type
+https://swagger.io/docs/specification/media-types/
+
+buenas practica API
+https://enmilocalfunciona.io/buenas-practicas-en-el-diseno-de-apis/
+https://elbauldelprogramador.com/buenas-practicas-para-el-diseno-de-una-api-restful-pragmatica/
+
+cerberus
+https://codingnetworker.com/2016/03/validate-json-data-using-cerberus/

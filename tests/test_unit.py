@@ -1,8 +1,15 @@
+"""
+Test
+"""
 import unittest
-from app.model import Persona, Mascota, Comida
+import requests
+from flaskpet.models import Persona, Mascota, Comida
 
 
 class PersonaTests(unittest.TestCase):
+    """
+    Test para la clase persona
+    """
     def test_nombrar_mascotas(self):
         """
         Nombrar a todas tus mascotas
@@ -17,13 +24,13 @@ class PersonaTests(unittest.TestCase):
 
     def test_obtener_mascota(self):
         """
-        Obtener una nueva mascota 
+        Obtener una nueva mascota
         """
         persona = Persona("jose")
         pet1 = Mascota("boby")
         persona.obtener_mascota(pet1)
         self.assertEqual(persona.nombrar_mascotas(), ["boby"])
-    
+
     def test_preparar_comida(self):
         """
         Preparar comida por una persona
@@ -32,7 +39,7 @@ class PersonaTests(unittest.TestCase):
         comida = Comida("pollo")
         persona.preparar_comida(comida)
         self.assertEqual(persona.comida, comida)
-    
+
     def test_dar_comer(self):
         """
         Dar de comer a la mascota y solo aceptara si le gusta
@@ -46,7 +53,8 @@ class PersonaTests(unittest.TestCase):
 
     def test_revisar_comida(self):
         """
-        Revisar si la comida se ha podrido (verificar fecha de caducidad y podrir la comida si se paso)
+        Revisar si la comida se ha podrido (verificar fecha de caducidad
+        y podrir la comida si se paso)
         """
         persona = Persona("jose")
         comida = Comida("pollo",vence=3)
@@ -70,20 +78,27 @@ class PersonaTests(unittest.TestCase):
 
     def test_presentarse(self):
         """
-        Presentarse (Mostrar su información) 
+        Presentarse (Mostrar su información)
         """
         persona = Persona("jose")
         pet1 = Mascota("boby")
         pet2 = Mascota("rex")
         persona.obtener_mascota(pet1)
         persona.obtener_mascota(pet2)
-        self.assertEqual(persona.presentarse(), f"Hola, soy {persona.nombre} y mis mascotas son {persona.nombrar_mascotas()}")
+        self.assertEqual(persona.presentarse(), f"Hola, soy {persona.nombre} y \
+        mis mascotas son {persona.nombrar_mascotas()}")
+
+    if __name__ == "__main__":
+        unittest.main()
 
 class MascotaTests(unittest.TestCase):
+    """
+    Test para la clase mascota
+    """
     def test_comer_comida(self):
         """
         Comer comida (Si come comida podrida,
-        se le restara 40 de salud, sino aumentar 70 de salud) 
+        se le restara 40 de salud, sino aumentar 70 de salud)
         """
         mascota = Mascota("boby", "pollo", 100, 100)
         comida1 = Comida("pollo",saludable=True)
@@ -100,7 +115,8 @@ class MascotaTests(unittest.TestCase):
         persona = Persona("jose")
         mascota = Mascota("boby", "pollo")
         persona.obtener_mascota(mascota)
-        self.assertEqual(mascota.saludar(), f"Hola {mascota.dueño.nombre} me gusta comer {mascota.comida_gusta}")
+        self.assertEqual(mascota.saludar(), f"Hola {mascota.persona_id.nombre} \
+        me gusta comer {mascota.comida_gusta}")
 
     def test_jugar(self):
         """
@@ -115,12 +131,12 @@ class MascotaTests(unittest.TestCase):
 
     def test_dormir(self):
         """
-        Dormir (Aumenta su estado de sueño) 
+        Dormir (Aumenta su estado de sueño)
         """
         mascota = Mascota("boby", sueño=50)
         mascota.dormir()
         self.assertEqual(mascota.sueño, 100)
-    
+
     def test_morir(self):
         """
         morir
@@ -131,8 +147,14 @@ class MascotaTests(unittest.TestCase):
 
 
 class ComidaTests(unittest.TestCase):
+    """
+    Test para la clase comida
+    """
 
     def test_podrirse(self):
+        """
+        Podrir comida
+        """
         comida = Comida("pollo")
         comida.podrirse()
         self.assertFalse(comida.saludable)
@@ -152,4 +174,18 @@ class ComidaTests(unittest.TestCase):
         comida = Comida("pollo")
         persona.preparar_comida(comida)
 
-        self.assertEqual(comida.informacion(), f"Lo preparo {comida.persona_preparo.nombre} y lo pueden comer {['boby','max']}")
+        self.assertEqual(comida.informacion(), f"Lo preparo {comida.persona_id.nombre}\
+             y lo pueden comer {['boby','max']}")
+
+class apiTests(unittest.TestCase):
+    def test_nombrar_mascotas_api(self):
+        nombre="jose"
+
+        url = f"http://127.0.0.1:5000/v1/personas/<{nombre}>/mascotas"
+        response = requests.get(url)
+        self.assertEqual(response.status_code , 200)
+
+    def test_hola_api(self):
+        url = "http://127.0.0.1:5000/"
+        response = requests.get(url)
+        self.assertEqual(response.status_code , 200)
